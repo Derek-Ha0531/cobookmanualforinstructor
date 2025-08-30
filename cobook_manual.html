@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가편집 매뉴얼 for 코북TXT TO Cobook</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            background: white;
+            border-radius: 20px;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            border: 3px solid #f8f9ff;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 1.3em;
+            color: #4a5568;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        
+        .process-overview {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .process-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+        
+        .process-list li {
+            counter-increment: step-counter;
+            margin: 15px 0;
+            padding-left: 50px;
+            position: relative;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+        
+        .process-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .notice {
+            background: linear-gradient(45deg, #ff9a56, #ff6b95);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            border-top: 4px solid #667eea;
+        }
+        
+        .section-title {
+            font-size: 2.2em;
+            color: #2d3748;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .steps {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+        
+        .steps li {
+            counter-increment: step-counter;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            position: relative;
+            padding-left: 60px;
+        }
+        
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(45deg, #ffd89b, #19547b);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .video-guide, .link-button {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 15px 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
+        }
+        
+        .video-guide:hover, .link-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+        
+        .video-guide::before {
+            content: "▶";
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        
+        .link-button::before {
+            content: "🔗";
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        
+        .download-button {
+            background: linear-gradient(45deg, #4caf50, #45a049);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 15px 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .download-button::before {
+            content: "📥";
+            margin-right: 8px;
+        }
+        
+        .warning {
+            background: linear-gradient(45deg, #ff9a56, #ff6b95);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .credentials {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            border: 2px solid #4a5568;
+        }
+        
+        .final-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+        
+        .checklist {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+        
+        .checklist-item::before {
+            content: "✓";
+            background: #48bb78;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .email-template {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-header {
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-header h2 {
+            color: #2d3748;
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+        
+        .modal-url {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            margin: 15px 0;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close:hover {
+            color: #667eea;
+        }
+        
+        .copy-button, .open-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-button:hover, .open-button:hover {
+            background: #5a67d8;
+            transform: translateY(-1px);
+        }
+        
+        .open-button {
+            background: #48bb78;
+        }
+        
+        .open-button:hover {
+            background: #38a169;
+        }
+        
+        .detailed-instruction {
+            background: #e6fffa;
+            border: 2px solid #38b2ac;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            color: #234e52;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>가편집 매뉴얼</h1>
+            <div class="subtitle">for 코북TXT TO Cobook</div>
+            <div class="process-overview">
+                <ol class="process-list">
+                    <li>'목차&강연대본' to '코북 수업화'</li>
+                    <li>강연대본 TO 오디오 생성 (MP3 / fish audio)</li>
+                    <li>오디오 TO 자막 생성 (SRT / VREW)</li>
+                    <li>자막 TO PPT 트랙 생성 (PPTM / MS 파워포인트)</li>
+                    <li>BGM 추천 (PIXABAY) - 생략 가능</li>
+                </ol>
+                <div class="notice">
+                    ※ 저자·강사가 '목차&강연대본' 작성을 마친 뒤 가편집 돌입
+                </div>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">가편집에 앞서 강연대본의 '코북 수업화'</h2>
+            <ol class="steps">
+                <li>'목차&강연대본(공용작업 폴더의) 구글독스'에 파트이름, 챕터이름, 본문이 모두 잘 입력돼 있는지 체크</li>
+                
+                <li>필요 시 '목차&강연대본'을 '코북 수업화': 기존의 강연 대본을 코북에 최적화한 대본으로 변환. 즉, 질문으로 시작해서 체득 중심으로 설명하고 개별 튜터링을 유도하면서 마무리하는 '코북식 수업'으로 대본 변환.
+                    
+                    <div class="detailed-instruction">
+                        <strong>상세 진행 방법:</strong><br>
+                        ☞ <button class="link-button" onclick="showModal('prompt-modal')">코북식 수업화 프롬프트</button> 로 들어가서 전체를 복사한 뒤 자신이 쓰는 AI(챗지피티, 클로드 등)에 일단 붙여넣기 하고 엔터키 쳐서 학습시키기<br><br>
+                        
+                        ➤ 그럼 다음 <strong>챕터제목과 챕터본문을 붙여넣기</strong> 하기<br><br>
+                        
+                        ➤ 그러면 바로 <strong>코북수업화된 챕터제목과 챕터본문</strong>이 나타날 것임<br><br>
+                        
+                        ➤ 공용폴더에 새 구글독스를 생성하여 파일명을 <strong>'코북식 수업화 대본'</strong>이라고 입력한 뒤 AI가 생성한 코북수업화된 챕터제목과 챕터본문을 붙여넣기 하기
+                    </div>
+                    
+                    <button class="video-guide" onclick="showModal('example-video-modal')">예시장면 가이드영상 바로보기</button>
+                </li>
+                
+                <li>한 챕터마다 강연대본이 구글독스 기준 2~3페이지 분량인지 다시 확인. 코북은 챕터별로 구글독스 2페이지~3페이지가 가장 이상적임.
+                    <div class="info-box">
+                        (구글독스 2페이지 = 영상 약 10분 / 구글독스 3페이지 = 영상 약 15분)
+                    </div>
+                </li>
+                
+                <li>원고에 괄호를 치고 년도를 적거나 부연설명을 넣는 경우가 있는데, 이 경우 이상하게 오디오가 생성되므로 강연대본에 맞게 잘 수정해줘야 합니다. (괄호 안 내용을 삭제하든지 해야 AI가 그걸 읽었을 때 자연스럽겠죠.)</li>
+                
+                <li>오탈자는 없는지 다시 한번 체크해주세요. 빨간 밑줄 있는 부분을 찾아서 올바르게 수정해주세요. 오탈자를 그대로 두면 AI가 잘못 읽을 수 있으니까요</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">FISH AUDIO</h2>
+            <ol class="steps">
+                <li>출연할 강사 또는 저자의 30초 짜리 음성파일을 준비한다.</li>
+                
+                <li><button class="link-button" onclick="showModal('fish-audio-modal')">FISH AUDIO 접속하기</button> 접속해 로그인
+                    <div class="credentials">
+                        (아이디 happydreamsmart@gmail.com 비번: 15자리)
+                    </div>
+                    피시오디오에 들어가서 보이스를 클로닝(복제)해서 목소리를 학습시킨다. 
+                    <div class="warning">
+                        (public이 아니라 private 모드로 클로닝해야 함!!)
+                    </div>
+                </li>
+                
+                <li>목차&강연대본 구글독스를 연다.<br><br>
+                    챕터별로 강연대본 텍스트를 FISH AUDIO에 입력해서 생성된 음성파일을 다운받는다. 가끔 중간에 이상한 소리가 나는 오류가 발생하니 꼭 한번 들어봐야 함. 
+                    <div class="warning">
+                        파일명은 챕터명과 동일하게 입력한다.
+                    </div>
+                </li>
+                
+                <li>mp3 파일을 공동 작업용 폴더(구글 드라이브)의 폴더 '챕터별 오디오(mp3) & 영상 파일(H264/mp4/비메오 업로드용)'에 업로드한다.</li>
+            </ol>
+            <button class="video-guide" onclick="showModal('fish-guide-modal')">가이드영상 클릭</button>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">VREW</h2>
+            <ol class="steps">
+                <li>구글에서 'vrew'라고 검색해 vrew 다운받아 설치</li>
+                
+                <li>VREW에 아까 fish audio로 생성한 오디오파일을 챕터별로 한 개씩 올리고 가장 긴 길이로 자막생성 (음성인식 엔진 WHISPER AI 선택)</li>
+                
+                <li>문장 또는 의미 단위로 '엔터키'를 쳐서 자막구간을 정하기 (영상은 잠금 상태) (화면 속 자막 2~3줄이면 ok)</li>
+                
+                <li>이어서 VREW의 '자막' 메뉴 눌러서 '전체자막 번역'눌러 제2의 언어(영어) 번역자막 생성</li>
+                
+                <li>SRT 파일을 출력(제1 자막, 제 2 자막 둘다)해서 챕터명과 동일한 파일명으로 저장</li>
+                
+                <li>구글 드라이브의 폴더 '챕터별 SRT 자막파일 & 챕터별 PPTM 트랙 파일 (파워포인트 마크로 파일)'에 업로드</li>
+            </ol>
+            <button class="video-guide" onclick="showModal('vrew-guide-modal')">가이드영상 클릭</button>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">3. PPT 트랙 생성 (MS 파워포인트)</h2>
+            <ol class="steps">
+                <li><button class="download-button" onclick="showModal('pptm-download-modal')">여기를 눌러서 PPTM 파일 다운받기</button></li>
+                
+                <li>pptm 파일 우클릭 - '속성' 누르고 - 맨 아래 '보안'에서 '차단해제' 체크! (가이드영상 참고)</li>
+                
+                <li>pptm(파워포인트 매크로) 파일을 열고 상단에 '개발 도구' - '매크로'를 누른 뒤<br>
+                    'SetSlideTrimmingAndNotesFromSRT' 선택하고 '실행' 클릭</li>
+                
+                <li>챕터별 SRT 파일을 선택한 뒤 '확인' 누르면 srt의 자막에 맞는 최적 이미지를 슬라이드별로 찾도록 ppt가 변환 됨</li>
+                
+                <li>슬라이드노트의 자막내용을 보면서 기존에 내가 갖고 있던 수업용 ppt파일에서 '슬라이드 이미지'를 복사해서 붙여넣기 (슬라이드 자체가 아니라 슬라이드의 이미지를 복사해서 붙여넣기 해야 함: 폰트 및 전환효과 때문)</li>
+                
+                <li>검은색 버튼을 눌러 적절한 ai 이미지를 찾기</li>
+            </ol>
+            <button class="video-guide" onclick="showModal('ppt-guide-modal')">가이드영상 클릭</button>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">4. PIXABAY에서 BGM 고르기</h2>
+            <ol class="steps">
+                <li><button class="link-button" onclick="showModal('pixabay-modal')">PIXABAY 뮤직 접속하기</button></li>
+                
+                <li>필터를 적용해서 원하는 BGM 찾기</li>
+                
+                <li>다운받아서 구글드라이브의 '추천 BGM (저작권 문제 없는 BGM 파일만 업로드)' 폴더에 업로드</li>
+            </ol>
+            <div class="info-box">
+                추천BGM 폴더에 음악파일을 올리지 않으실 경우 코북 제작자가 알아서 BGM 선정함
+            </div>
+        </section>
+
+        <section class="final-section">
+            <h2>수고하셨습니다.</h2>
+            <p style="font-size: 1.2em; margin-bottom: 20px;">구글 드라이브에 가편집 결과물인 아래 4가지를 다 올리셨나요?</p>
+            
+            <div class="checklist">
+                <div class="checklist-item">챕터별 오디오 파일(MP3/FISH AUDIO)</div>
+                <div class="checklist-item">챕터별 자막 파일(SRT / VREW)</div>
+                <div class="checklist-item">챕터별 PPT 트랙 파일 (PPTM / 파워포인트)</div>
+                <div class="checklist-item">BGM 추천 음악파일</div>
+            </div>
+
+            <p style="font-size: 1.1em; margin-top: 30px;">
+                그렇다면 <button class="link-button" onclick="showModal('email-modal')" style="background: linear-gradient(45deg, #ffd89b, #19547b); padding: 8px 15px; font-size: 0.9em;">admin@cobook.ai</button>에 메일을 보내서 '종합편집 및 코북 업로드'를 요청해주세요.
+            </p>
+            
+            <div class="email-template">
+                <strong>메일 제목:</strong> [종편요청] 강사명 _ 클래스제목<br><br>
+                <strong>메일 본문:</strong> 코북 제작진에게 전달하고 싶은 내용을 적어주세요.
+            </div>
+        </section>
+    </div>
+
+    <!-- Modals -->
+    <div id="prompt-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('prompt-modal')">&times;</span>
+            <div class="modal-header">
+                <h2>코북식 수업화 프롬프트</h2>
+                <p>구글 문서에서 프롬프트를 확인하고 복사하세요</p>
+            </div>
+            <div class="modal-url">https://docs.google.com/document/d/1rVBYi20aoZ8dM2Hsqarki85KqQirFE52JyCll9iAjTE/edit?usp=sharing</div>
+            <button class="copy-button" onclick="copyToClipboard('https://docs.google.com/document/d/1rVBYi20aoZ8dM2Hsqarki85KqQirFE52JyCll9iAjTE/edit?usp=sharing')">링크 복사</button>
+            <button class="open-button" onclick="window.open('https://docs.google.com/document/d/1rVBYi20aoZ8dM2Hsqarki85KqQirFE52JyCll9iAjTE/edit?usp=sharing', '_blank')">새 창에서 열기</button>
+        </div>
+    </div>
+
+    <div id="example-video-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('example-video-modal')">&times;</span>
+            <div class="modal-header">
+                <h2>예시장면 가이드영상</h2>
+                <p>코북식 수업화 예시를 확인하세요</p>
+            </div>
+            <div class="modal-url">https://us06web.zoom.us/clips/share/OiGD0NX2TmO0_g1Ys2uwWw</div>
+            <button class="copy-button" onclick="copyToClipboard('https://us06web.zoom.us/clips/share/OiGD0NX2TmO0_g1Ys2uwWw')">링크 복사</button>
+            <button class="open-button" onclick="window.open('https://us06web.zoom.us/clips/share/OiGD0NX2TmO0_g1Ys2uwWw', '_blank')">새 창에서 열기</button>
+        </div>
+    </div>
+
+    <div id="fish-audio-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('fish-audio-modal')">&times;</span>
+            <div class="modal-header">
+                <h2>FISH AUDIO</h2>
+                <p>음성 생성 서비스에 접속합니다</p>
+            </div>
+            <div class="modal-url">https://fish.audio</div>
+            <button class="copy-button" onclick="copyToClipboard('https://fish.audio')">링크 복사</button>
+            <button class="open-button" onclick="window.open('https://fish.audio', '_blank')">새 창에서 열기</button>
+        </div>
+    </div>
+
+    <div id="fish-guide-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('fish-guide-modal')">&times;</span>
+            <div class="modal-header">
+                <h2>FISH AUDIO 가이드영상</h2>
+                <p>FISH AUDIO 사용법을 확인하세요</p>
+            </div>
+            <div class="modal-url">https://us06web.zoom.us/clips/share/zDUhdL6xSXeCKS4ZlT_gNg</div>
+            <button class="copy-button" onclick="copyToClipboard('https://us06web.zoom.us/clips/share/zDUhdL6xSXeCKS4ZlT_gNg')">링크 복사</button>
+            <button class="open-button" onclick="window.open('https://us06web.zoom.us/clips/share/zDUhdL6xSXeCKS4ZlT_gNg', '_blank')">새 창에서 열기</button>
+        </div>
+    </div>
+
+    <div id="vrew-guide-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('vrew-guide-modal')">&times;</span>
+            <div class="modal-header">
+                <h2>VREW 가이드영상</h2>
+                <p>VREW 사용법을 확인하세요</p>
+            </div>
+            <div class="modal-url">https://us06web.zoom.us/clips/share/_SZ4TPswScSAuYA_5Jbd7Q</div>
+            <button class="copy-button" onclick="copyToClipboard('https://us06web.zoom.us/clips/share/_SZ4TPswScSAuYA_5Jbd7Q')">링크 복사</button>
+            <button class="open-button" onclick="window.open('https://us06web.zoom.us/clips/share/_SZ4TPswScSAuYA_5Jbd7Q', '_blank')">새 창에서 열기</button>
+        </div>
+    </div>
+
+    <div id="pptm-download-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('pptm-download-modal')">&times;</span>
+            <div class="modal-header">
+                <h2>PPTM 파일 다운로드</h2>
+                <p>파워포인트 매크로 파일을 다운받으세요</p>
+            </div>
+            <p>실제 PPTM 파일 다운로드 링크가 PDF에 명시되지 않았습니다.<br>관리자에게 다운로드 링크를 요청해주세요.</p>
+        </div>
+    </div>
+
+    <div id="ppt-guide-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('ppt-guide-modal')">&times;</span>
+            <div class="modal-header">
+                <h2>PPT 트랙 생성 가이드영상</h2>
+                <p>파워포인트 트랙 생성 방법을 확인하세요</p>
+            </div>
+            <div class="modal-url">https://us06web.zoom.us/clips/share/cpJl4xg7Roe52FQOk8jUdQ</div>
+            <button class="copy-button" onclick="copyToClipboard('https://us06web.zoom.us/clips/share/cpJl4xg7Roe52FQOk8jUdQ')">링크 복사</button>
+            <button class="open-button" onclick="window.open('https://us06web.zoom.us/clips/share/cpJl4xg7Roe52FQOk8jUdQ', '_blank')">새 창에서 열기</button>
+        </div>
+    </div>
+
+    <div id="pixabay-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('pixabay-modal')">&times;</span>
+            <div class="modal-header">
+                <h2>PIXABAY 뮤직</h2>
+                <p>무료 배경음악을 다운받으세요</p>
+            </div>
+            <div class="modal-url">https://pixabay.com/music/</div>
+            <button class="copy-button" onclick="copyToClipboard('https://pixabay.com/music/')">링크 복사</button>
+            <button class="open-button" onclick="window.open('https://pixabay.com/music/', '_blank')">새 창에서 열기</button>
+        </div>
+    </div>
+
+    <div id="email-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('email-modal')">&times;</span>
+            <div class="modal-header">
+                <h2>코북 관리자 이메일</h2>
+                <p>종합편집 요청을 위한 이메일 주소</p>
+            </div>
+            <div class="modal-url">admin@cobook.ai</div>
+            <button class="copy-button" onclick="copyToClipboard('admin@cobook.ai')">이메일 복사</button>
+            <button class="open-button" onclick="window.location.href='mailto:admin@cobook.ai?subject=[종편요청] 강사명 _ 클래스제목'">메일 앱에서 열기</button>
+        </div>
+    </div>
+
+    <script>
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('클립보드에 복사되었습니다!');
+            }, function(err) {
+                console.error('복사 실패: ', err);
+                // 대체 방법
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('클립보드에 복사되었습니다!');
+            });
+        }
+
+        // 모달 외부 클릭시 닫기
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
